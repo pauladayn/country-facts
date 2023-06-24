@@ -1,4 +1,5 @@
 import { getAllCountries, getCountryByCapital, getContriesByName } from '../services/CountriesData';
+import { CardsGrid } from '../components/organisms/CardsGrid';
 
 export default async function CountriesData() {
     const allCountries = await getAllCountries();
@@ -6,6 +7,6 @@ export default async function CountriesData() {
     const totalResults = allCountries.length ?? 1
 
     return (
-        <div>estoy en la pagina de countries</div>
+        <CardsGrid countryList={allCountries} foundedResults={totalResults} />
     )
 }

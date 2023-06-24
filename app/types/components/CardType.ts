@@ -6,6 +6,6 @@ export type CardType = {
   timezone: string;
   sectionName?: string;
   image: { png: string; alt: string };
-  link: { google: string; openStreet: string };
+  link: { googleMaps: string; openStreet: string };
   styleVariant?: string;
 };
