@@ -1,0 +1,36 @@
+.container {
+  min-width: 20rem;
+  min-height: 35rem;
+  border: 1px solid #d2d2d2;
+  padding: 1rem;
+}
+
+.imagePlaceholder {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+
+}
+.content {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.textWrapper {
+  min-height: 3.5rem;
+}
+.buttonsWrapper {
+    min-height: 3rem;
+}
+
+.imagePlaceholder,
+.textWrapper,
+.buttonsWrapper {
+    background-color: rgb(226 232 240);
+}
+.container,
+.textWrapper,
+.buttonsWrapper {
+  border-radius: 16px;
+}
