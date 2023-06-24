@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo} from "react";
 import { CountryData } from "../types/model/CountryType";
 
 export default function usePagination(
@@ -33,5 +33,6 @@ export default function usePagination(
     handleNextPage,
     handlePrevPage,
     availablePages,
+    maxItems
   };
 }
