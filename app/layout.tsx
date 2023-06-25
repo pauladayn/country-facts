@@ -1,5 +1,4 @@
 import Providers from './Providers'
-import Header from './components/organisms/Header'
 import './globals.css'
 import { Manrope } from 'next/font/google'
 
@@ -17,12 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={`${manrope.className} bg-white dark:bg-zinc-800`}>
-          <Header />
+      <body className={`${manrope.className} bg-white dark:bg-zinc-800`}>
+        <Providers>
           {children}
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   )
 }

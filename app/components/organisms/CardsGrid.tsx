@@ -11,10 +11,6 @@ export const CardsGrid = ({ countryList, foundedResults }: { countryList: Countr
 
     return (
         <>
-            <div className="flex justify-center gap-3 p-3">
-                {currentPage > 1 && <button onClick={handlePrevPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Back</button>}
-                {currentPage === maxItems ? <p>You have reached all the results</p> : <button onClick={handleNextPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Next</button>}
-            </div>
             <div className='grid place-items-center gap-9 md:grid-cols-2 lg:grid-cols-3 py-8'>
                 {currentPageContent.map((content: CountryData, index: number) =>
                 (
@@ -30,6 +26,10 @@ export const CardsGrid = ({ countryList, foundedResults }: { countryList: Countr
                     />
                 )
                 )}
+                <div className="flex justify-center gap-3 p-3">
+                    {currentPage > 1 && <button onClick={handlePrevPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Back</button>}
+                    {currentPage === maxItems ? <p>You have reached all the results</p> : <button onClick={handleNextPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Next</button>}
+                </div>
             </div>
         </>
     )
