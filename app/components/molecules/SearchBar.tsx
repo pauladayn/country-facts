@@ -3,45 +3,49 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
+import { createUrl } from '@/app/utils/createUrl';
 
-export const SearchBar = ({ disabled }: { disabled?: boolean }) => {
-    const { replace } = useRouter();
-    const pathname = usePathname();
+export const SearchBar = () => {
+    const router = useRouter()
     const [isPending, startTransition] = useTransition();
     const checkParams = useSearchParams();
 
-    const handleSearch = (value: string) => {
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const value = e.target as HTMLFormElement;
+        const search = value.search as HTMLInputElement
+        const searchParams = new URLSearchParams(checkParams.toString());
 
-        const searchParams = new URLSearchParams(window.location.search);
-        if (value) {
-            searchParams.set('q', value);
+        if (search.value) {
+            searchParams.set('q', search.value);
         } else {
             searchParams.delete('q');
         }
         startTransition(() => {
-            replace(`${pathname}?${searchParams.toString()}`);
+            router.push(createUrl('/search', searchParams));
         });
+
     };
 
     return (
         <>
-            <div className='container ms-auto max-w-md relative'>
+            <div className='container max-w-md relative'>
                 <label htmlFor='search' className='sr-only'>
                     Search
                 </label>
-                <div className='mx-auto flex items-center rounded-full bg-purple-600 px-3 py-3 shadow-md'>
+                <div className='mx-auto flex items-center rounded-full bg-purple-300 dark:bg-purple-600 px-3 py-3 shadow-md'>
                     <MagnifyingGlassIcon className='mr-3 h-6 w-6 text-white dark:text-gray-900' aria-hidden='true' />
-                    <input
-                        type='text'
-                        name='search'
-                        id='search'
-                        disabled={isPending}
-                        className='w-full rounded-full py-1 ps-3 focus:border-rose-300 focus:outline-none focus:ring'
-                        placeholder='Search...'
-                        onChange={(e) => {
-                            handleSearch(e.target.value);
-                        }}
-                    />
+                    <form className='relative w-full flex items-center' onSubmit={handleSearch}>
+                        <input
+                            type='text'
+                            name='search'
+                            id='search'
+                            disabled={isPending}
+                            defaultValue={checkParams?.get('q') || ''}
+                            className='w-full rounded-full py-1 ps-3 focus:border-rose-300 focus:outline-none focus:ring'
+                            placeholder='Search...'
+                        />
+                    </form>
                     {isPending && (
                         <div className="absolute right-0 top-0 bottom-0 flex items-center justify-center me-3">
                             <svg
