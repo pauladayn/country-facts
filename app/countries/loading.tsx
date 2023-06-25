@@ -1,5 +1,5 @@
 import { Skeleton } from "../components/molecules/Skeleton/Skeleton"
-import { SearchBar } from "../components/molecules/SearchBar"
+
 
 export default function Loading() {
     // Or a custom loading skeleton component

@@ -3,7 +3,7 @@ import { URI } from "./uris";
 
 export const getAllCountries = () => get({ url: `${URI.ALL_COUNTRIES}` });
 
-export const getContriesByName = (countryName: string) =>
+export const getCountriesByName = (countryName: string) =>
   get({ url: `${URI.NAME}/${countryName}` });
 
 export const getCountryByCapital = (capitalName: string) =>

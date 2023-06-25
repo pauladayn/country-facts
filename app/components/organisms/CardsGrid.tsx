@@ -27,8 +27,8 @@ export const CardsGrid = ({ countryList, foundedResults }: { countryList: Countr
                 )
                 )}
                 <div className="flex justify-center gap-3 p-3">
-                    {currentPage > 1 && <button onClick={handlePrevPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Back</button>}
-                    {currentPage === maxItems ? <p>You have reached all the results</p> : <button onClick={handleNextPage} className="rounded-full bg-purple-300 py-2 px-5 text-white shadow-md">Next</button>}
+                    {currentPage > 1 && <button onClick={handlePrevPage} className="rounded-full bg-purple-500 hover:bg-purple-700 py-2 px-5 text-white shadow-md">Back</button>}
+                    {currentPage === maxItems ? <p>You have reached all the results</p> : <button onClick={handleNextPage} className="rounded-full bg-purple-500  hover:bg-purple-700 py-2 px-5 text-white shadow-md">Next</button>}
                 </div>
             </div>
         </>
