@@ -1,9 +1,9 @@
 import Providers from './Providers'
 import './globals.css'
-import { Manrope } from 'next/font/google'
+import { Manrope} from 'next/font/google'
 import Header from './components/organisms/Header'
 
-const manrope = Manrope({ subsets: ['latin'], weight: ['300', '600', '700', '800'] })
+const manrope = Manrope({ subsets: ['latin'], weight: ['300', '600', '700', '800'] });
 
 export const metadata = {
   title: 'Country facts',

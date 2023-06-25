@@ -7,7 +7,7 @@ export default async function CountriesData() {
 
 
     return (
-        <div className="flex min-h-screen flex-col items-center p-24 justify-center">
+        <div className="p-6">
             <CardsGrid countryList={allCountries} foundedResults={totalResults} />
         </div>
 

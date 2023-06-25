@@ -7,13 +7,14 @@ export default async function SearchCountry({ searchParams }: { searchParams: { 
     const countryByName = search.length && await getCountriesByName(search)
     const result = countryByName[0]
 
-
     return (
-        <div className="flex min-h-screen flex-col items-center p-24 justify-center">
-            <h1 className='text-4xl font-extrabold lg:text-6xl my-8'>Country facts</h1>
+        <div className="flex min-h-screen flex-col items-center p-8 lg:p24 justify-center">
+
             <>
                 {search ? (
-                    result ? (<CountryDetail country={result} />) : null
+                    result ? (
+                      <CountryDetail country={result} />
+                    ) : null
                 ) : null}
             </>
         </div>
