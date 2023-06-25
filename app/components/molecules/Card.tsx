@@ -1,31 +1,33 @@
 import Link from 'next/link';
 import { CardType } from '@/app/types/components/CardType';
-import Image from 'next/image';
 import { Poppins } from 'next/font/google';
+import { CardTitle } from '../atoms/CardTitle';
+import { CardImage } from '../atoms/CardImage';
+import { CardDescriptionItem } from '../atoms/CardDescriptionItem';
+import { transformApiData } from '@/app/utils/transformApiInfo';
 
 export const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '700'] });
 
-export const Card = ({ title, subtitle, language, currencies, timezone, image, link, styleVariant }: CardType) => {
+export const Card = ({ title, subtitle, language, currencies, timezone, image, link }: CardType) => {
     const getLanguages = language && Object.keys(language).map(lang => language[lang as keyof typeof language])
-    const getCurrency = currencies && Object.keys(currencies).map(currency => ({values: currencies[currency as keyof typeof currencies], currency}))
+    const getCurrency = currencies && Object.keys(currencies).map(currency => ({ values: currencies[currency as keyof typeof currencies], currency }))
     console.log('get currency', getCurrency && getCurrency[0].values);
 
-    
+    console.log('xxxxx------->', transformApiData(language))
 
     return (
         <div className='container pointer-events-auto max-w-xs transition-all hover:scale-105'>
 
             <div
-                className={`container rounded-2xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-400 to-rose-700 p-4 ${styleVariant}`}
+                className='container rounded-2xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-400 to-rose-700 p-4'
             >
                 <div className='flex flex-col justify-center'>
-                    <div className='mx-auto mt-8 grid h-36 w-36 place-items-center rounded-full shadow-lg'>
-                        {image && <Image priority alt={image?.alt || 'country flag'} src={image?.png} height={96} width={96} />}
-                    </div>
-                    <div className={`text-center ${poppins.className} my-5 text-white`}>
-                        <h4 className='text-lg'>{title}</h4>
-                        <p className='text-sm'>{subtitle}</p>
-                    </div>
+                    {image &&
+                        <div className='mx-auto'>
+                            <CardImage image={image} />
+                        </div>
+                    }
+                    <CardTitle title={title} subtitle={subtitle} />
                     <div className={`grid place-items-center gap-3 ${poppins.className}`}>
                         <p className='text-xs'>{getLanguages?.length > 1 ? 'Main Languages' : 'Main language'}</p>
                         <div className='min-w-full cursor-pointer rounded-full   bg-white dark:bg-transparent px-3 py-2 text-center hover:bg-transparent hover:text-white hover:ring-1 hover:ring-white dark:ring-teal-300 dark:ring-1 dark:hover:bg-white dark:hover:text-purple-500'>
@@ -33,15 +35,10 @@ export const Card = ({ title, subtitle, language, currencies, timezone, image, l
                                 <div className='flex justify-around items-center'>{
                                     getLanguages.slice(0, 3).map((lang, index) => (<p className='full-rounded text-sm' key={index}>{lang}</p>))}</div>) : (<p className='text-sm'>{getLanguages?.toString() || getLanguages}</p>)}
                         </div>
-
-                        <p className='text-xs'>Currencies</p>
-                        <div className='min-w-full cursor-pointer rounded-full   bg-white dark:bg-transparent px-3 py-2 text-center hover:bg-transparent hover:text-white hover:ring-1 hover:ring-white dark:ring-teal-300 dark:ring-1 dark:hover:bg-white dark:hover:text-purple-500'>
-                        <div className='flex justify-around items-center'>{`${getCurrency && getCurrency[0].currency} ${getCurrency && getCurrency[0].values?.name} - ${getCurrency && getCurrency[0].values?.symbol}` }</div>
-                        </div>
-                        <p className='text-xs'>Timezone</p>
-                        <div className='min-w-full cursor-pointer rounded-full   bg-white dark:bg-transparent px-3 py-2 text-center hover:bg-transparent hover:text-white hover:ring-1 hover:ring-white dark:ring-teal-300 dark:ring-1 dark:hover:bg-white dark:hover:text-purple-500'>
-                            <button className='text-sm'>{timezone.slice(0, 3)}</button>
-                        </div>
+                        <CardDescriptionItem title='Currencies'>
+                            {`${getCurrency && getCurrency[0].currency} ${getCurrency && getCurrency[0].values?.name} - ${getCurrency && getCurrency[0].values?.symbol}`}
+                        </CardDescriptionItem>
+                        <CardDescriptionItem title='Timezone'>{timezone.slice(0, 3)}</CardDescriptionItem>
                     </div>
                     {/* actions */}
                     <div className='my-6 flex justify-center gap-3'>

@@ -14,6 +14,11 @@ interface Flags {
   alt: string;
 }
 
+interface Suffix {
+  root: string;
+  suffixes: string;
+}
+
 export interface CountryData {
   name: Name;
   currencies: {};
@@ -24,4 +29,5 @@ export interface CountryData {
   population: number;
   timezones: string;
   flags: Flags;
+  idd?: Suffix;
 }

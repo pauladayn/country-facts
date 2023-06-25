@@ -1,3 +1,8 @@
+export type CardImageType = {
+  png: string;
+  alt: string
+}
+
 export type CardType = {
   title: string;
   subtitle: string;
@@ -5,7 +10,6 @@ export type CardType = {
   currencies: {};
   timezone: string;
   sectionName?: string;
-  image: { png: string; alt: string };
+  image: CardImageType;
   link: { googleMaps: string; openStreet: string };
-  styleVariant?: string;
 };
