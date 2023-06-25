@@ -5,6 +5,7 @@ export default async function SearchCountry({ searchParams }: { searchParams: { 
     const search = searchParams.q ? searchParams.q : '';
 
     const countryByName = search.length && await getCountriesByName(search)
+    console.log('result', countryByName)
     const result = countryByName[0]
 
     return (
