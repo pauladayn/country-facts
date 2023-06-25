@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 export const ThemeButton = () => {
     const { theme, setTheme } = useTheme()
     return (
-        <button className='px-3 py-2' onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+        <button className='px-5 py-2' onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
 
             {theme === 'dark' ?
                 <svg
