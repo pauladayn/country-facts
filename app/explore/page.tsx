@@ -1,12 +1,11 @@
-import { getCountryByCapital, getCountriesByName } from '../services/CountriesData';
 import { SearchBar } from '../components/molecules/SearchBar';
 import Link from 'next/link';
 
-export default async function SearchCountry() {
+export default function SearchCountry() {
 
     return (
-        <div className="flex min-h-screen flex-col items-center p-24 justify-center">
-            <h1 className='text-4xl font-extrabold lg:text-6xl my-8'>Country facts</h1>
+        <div className="flex min-h-screen flex-col items-center p-12 justify-center">
+            <h1 className='text-2xl py-3'>Search by country</h1>
             <SearchBar />
             <div>
                 <Link href='/countries'>
@@ -19,7 +18,6 @@ export default async function SearchCountry() {
                         </svg>
                     </div>
                 </Link>
-{/*                 {countryByName && <div>{countryByName[0].name.common}</div>} */}
             </div>
         </div>
     )
